@@ -1,0 +1,32 @@
+pragma solidity ^0.5.0;
+
+contract WEINER {
+    //Address of the token contract
+    address public minter;
+    //Total supply of tokens
+    uint256 public totalSupply;
+    //Name of the token
+    string public name = "WEINER";
+    //Symbol of the token
+    string public symbol = "WNR";
+    //Decimals of the token
+    uint8 public decimals = 0;
+    //Starting supply of tokens
+    uint256 public startingSupply = 500;
+    //Emission rate of the tokens
+    uint256 public emissionRate = 1;
+    
+    //Mapping of token holders
+    mapping (address => uint256) public balanceOf;
+    
+    constructor () public {
+        minter = msg.sender;
+        totalSupply = startingSupply;
+        balanceOf[minter] = totalSupply;
+    }
+    
+    //Function to mint tokens
+    function mint () public {
+        require(msg.sender == minter);
+        totalSupply += emissionRate;
+        balanceOf[minter
